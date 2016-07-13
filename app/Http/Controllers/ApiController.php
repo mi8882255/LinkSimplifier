@@ -13,6 +13,7 @@ class ApiController extends Controller
      * @param mixed $resp responce body
      * @param array $err errors array
      * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * ex.: callback({"state":true,"resp":4});
      */
     public function prepareJSONPresp(Request $request, $state, $resp, $err=[]) {
         if (!$state) {
@@ -23,9 +24,9 @@ class ApiController extends Controller
     }
 
     /**
-     * Get last 10 bookmarks with comments
+     * Get last 10 bookmarks
      * request: -
-     * response: 0:['id','url','comments':[0:['id','created','updated','text'],1:...]],1:...
+     * response: 0:['id','url'],1:...
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
@@ -37,15 +38,6 @@ class ApiController extends Controller
             $bmArr = [];
             $bmArr['uid'] = $bookmark->id;
             $bmArr['url'] = $bookmark->url;
-            foreach ($bookmark->comments as $comment) {
-                $comArr = [];
-                $comArr['id'] = $comment->id;
-                $comArr['created'] = $comment->created_at;
-                $comArr['updated'] = $comment->updated_at;
-                $comArr['text'] = $comment->body;
-
-                $bmArr['comments'][] = $comArr;
-            }
             $resp[] = $bmArr;
         }
 
