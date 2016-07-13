@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Http\Request;
 
 class ApiController extends Controller
 {
