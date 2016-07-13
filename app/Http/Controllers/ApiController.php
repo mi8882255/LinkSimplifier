@@ -52,6 +52,14 @@ class ApiController extends Controller
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function getByIdwComments(Request $request) {
+        $v=Validator::make($request->all(),[
+            'id'=>'required|Numeric'
+        ]);
+
+        if ($v->fails()) {
+            return $this->prepareJSONPresp($request,false,false,$v->errors());
+        }
+
         $id = $request->input('id');
 
         $bookmark=\App\Bookmark::where('id', $id)->first();
@@ -79,6 +87,14 @@ class ApiController extends Controller
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function addNew(Request $request) {
+        $v=Validator::make($request->all(),[
+            'url'=>'required|URL'
+        ]);
+
+        if ($v->fails()) {
+            return $this->prepareJSONPresp($request,false,false,$v->errors());
+        }
+
         $url = $request->input('url');
         $bookmark=\App\Bookmark::where('url', $url)->first();
         if ($bookmark===null) {
@@ -99,6 +115,15 @@ class ApiController extends Controller
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function addComment(Request $request) {
+        $v=Validator::make($request->all(),[
+            'bm_id'=>'required|Numeric',
+            'text'=>'required|between:1,100'
+        ]);
+
+        if ($v->fails()) {
+            return $this->prepareJSONPresp($request,false,false,$v->errors());
+        }
+
         $bookmarkId = $request->input('bm_id');
         $text = $request->input('text');
         $bookmark=\App\Bookmark::where('id', $bookmarkId)->first();
@@ -124,6 +149,15 @@ class ApiController extends Controller
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function modifyComment(Request $request) {
+        $v=Validator::make($request->all(),[
+            'id'=>'required|Numeric',
+            'text'=>'required|between:1,100'
+        ]);
+
+        if ($v->fails()) {
+            return $this->prepareJSONPresp($request,false,false,$v->errors());
+        }
+
         $id = $request->input('id');
         $text = $request->input('text');
         $userIp=$request->ip();
@@ -150,6 +184,14 @@ class ApiController extends Controller
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function deleteComment(Request $request) {
+        $v=Validator::make($request->all(),[
+            'id'=>'required|Numeric'
+        ]);
+
+        if ($v->fails()) {
+            return $this->prepareJSONPresp($request,false,false,$v->errors());
+        }
+
         $id = $request->input('id');
         $userIp=$request->ip();
         $oneHourAgo = Carbon::now()->subHour();
