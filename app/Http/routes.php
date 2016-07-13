@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('/api/bookmark/add', 'ApiController@addNew');
+Route::get('/api/bookmark/get10', 'ApiController@get10');
+Route::get('/api/bookmark/getbyid/{id}', 'ApiController@getByIdwComments');
+Route::post('/api/comments/new', 'ApiController@addComment');
+Route::post('/api/comments/modify', 'ApiController@modifyComment');
+Route::post('/api/comments/delete', 'ApiController@deleteComment');
