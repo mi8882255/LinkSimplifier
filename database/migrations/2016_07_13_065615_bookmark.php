@@ -17,8 +17,7 @@ class Bookmark extends Migration
             $table->increments('id');
             $table->string('url')->unique();
             $table->timestamps();
-
-            $table->primary('id');
+            
         });
     }
 
@@ -29,6 +28,6 @@ class Bookmark extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('bookmarks');
     }
 }

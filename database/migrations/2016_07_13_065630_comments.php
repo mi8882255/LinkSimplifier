@@ -30,6 +30,6 @@ class Comments extends Migration
     public function down()
     {
         //
-
+        Schema::drop('comments');
     }
 }
