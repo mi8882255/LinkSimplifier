@@ -19,8 +19,6 @@ class Comments extends Migration
             $table->string('ip');
             $table->text('body');
             $table->timestamps();
-
-            $table->primary('id');
         });
     }
 
