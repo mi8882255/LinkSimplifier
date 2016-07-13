@@ -25,7 +25,7 @@ class ApiController extends Controller
             $resp[]=$bmArr;
         }
 
-        return (new Response())->json($resp)->setCallback($request->input('callback'));
+        return response()->json($resp)->setCallback($request->input('callback'));
 
     }
     public function getByIdwComments(Request $request) {
@@ -45,7 +45,7 @@ class ApiController extends Controller
         }
 
 
-        return (new Response())->json($resp)->setCallback($request->input('callback'));
+        return response()->json($resp)->setCallback($request->input('callback'));
     }
     public function addNew(Request $request) {
         $url = $request->input('url');
@@ -57,14 +57,14 @@ class ApiController extends Controller
         }
         $resp = $bookmark->id;
 
-        return (new Response())->json($resp)->setCallback($request->input('callback'));
+        return response()->json($resp)->setCallback($request->input('callback'));
     }
     public function addComment(Request $request) {
         $bookmarkId = $request->input('bm_id');
         $text = $request->input('text');
         $bookmark=\App\Bookmark::where('id', bm_id)->first();
         if ($bookmark===null) {
-            return (new Response())->json(false)->setCallback($request->input('callback'));
+            return response()->json(false)->setCallback($request->input('callback'));
         }
 
         $comment=new \App\Comment();
@@ -73,7 +73,7 @@ class ApiController extends Controller
         $comment->save();
         $resp = $comment->id;
 
-        return (new Response())->json($resp)->setCallback($request->input('callback'));
+        return response()->json($resp)->setCallback($request->input('callback'));
     }
     public function modifyComment(Request $request) {
         $id = $request->input('id');
@@ -92,7 +92,7 @@ class ApiController extends Controller
 
 
 
-        return (new Response())->json($resp)->setCallback($request->input('callback'));
+        return response()->json($resp)->setCallback($request->input('callback'));
     }
     public function deleteComment(Request $request) {
         $id = $request->input('id');
@@ -109,6 +109,6 @@ class ApiController extends Controller
 
 
 
-        return (new Response())->json($resp)->setCallback($request->input('callback'));
+        return response()->json($resp)->setCallback($request->input('callback'));
     }
 }
