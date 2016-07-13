@@ -52,7 +52,7 @@ class ApiController extends Controller
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function getByIdwComments(Request $request) {
-        $v=Validator::make($request->all(),[
+        $v=\Validator::make($request->all(),[
             'id'=>'required|Numeric'
         ]);
 
@@ -87,7 +87,7 @@ class ApiController extends Controller
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function addNew(Request $request) {
-        $v=Validator::make($request->all(),[
+        $v=\Validator::make($request->all(),[
             'url'=>'required|URL'
         ]);
 
@@ -115,7 +115,7 @@ class ApiController extends Controller
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function addComment(Request $request) {
-        $v=Validator::make($request->all(),[
+        $v=\Validator::make($request->all(),[
             'bm_id'=>'required|Numeric',
             'text'=>'required|between:1,100'
         ]);
@@ -149,7 +149,7 @@ class ApiController extends Controller
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function modifyComment(Request $request) {
-        $v=Validator::make($request->all(),[
+        $v=\Validator::make($request->all(),[
             'id'=>'required|Numeric',
             'text'=>'required|between:1,100'
         ]);
@@ -184,7 +184,7 @@ class ApiController extends Controller
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function deleteComment(Request $request) {
-        $v=Validator::make($request->all(),[
+        $v=\Validator::make($request->all(),[
             'id'=>'required|Numeric'
         ]);
 
