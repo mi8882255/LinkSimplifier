@@ -31,9 +31,6 @@
                 display: inline-block;
             }
 
-            .title {
-                font-size: 96px;
-            }
         </style>
     </head>
     <body>
@@ -42,7 +39,7 @@
                 <h1>Api Usage:</h1>
                 <p>You can use JSONP get requests for add/moduify data.</p>
                 <p>Routes list:</p>
-<table>
+<table border="1">
     <thead>
     <tr>
         <th>Url</th><th>Description</th><th>Request params</th><th>Response structure</th><th></th>
