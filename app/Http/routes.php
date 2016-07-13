@@ -15,9 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/api/bookmark/add', 'ApiController@addNew');
-Route::post('/api/bookmark/get10', 'ApiController@get10');
-Route::post('/api/bookmark/getbyid', 'ApiController@getByIdwComments');
-Route::post('/api/comments/add', 'ApiController@addComment');
-Route::post('/api/comments/modify', 'ApiController@modifyComment');
-Route::post('/api/comments/delete', 'ApiController@deleteComment');
+Route::get('/api/bookmark/add', 'ApiController@addNew');
+Route::get('/api/bookmark/get10', 'ApiController@get10');
+Route::get('/api/bookmark/getbyid', 'ApiController@getByIdwComments');
+Route::get('/api/comments/add', 'ApiController@addComment');
+Route::get('/api/comments/modify', 'ApiController@modifyComment');
+Route::get('/api/comments/delete', 'ApiController@deleteComment');
