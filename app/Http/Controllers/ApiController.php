@@ -9,7 +9,7 @@ class ApiController extends Controller
 {
     public function get10(Request $request) {
         $resp=[];
-        $bookmarks=App\Bookmark::orderBy('id', 'desc')->take(10)->get();
+        $bookmarks=\App\Bookmark::orderBy('id', 'desc')->take(10)->get();
         foreach ($bookmarks as $bookmark) {
             $bmArr=[];
             $bmArr['uid']=$bookmark->id;
@@ -31,7 +31,7 @@ class ApiController extends Controller
     public function getByIdwComments(Request $request) {
         $id = $request->input('id');
 
-        $bookmark=App\Bookmark::where('id', $id)->first();
+        $bookmark=\App\Bookmark::where('id', $id)->first();
         $resp=[];
         $resp['uid']=$bookmark->id;
         $resp['url']=$bookmark->url;
@@ -49,7 +49,7 @@ class ApiController extends Controller
     }
     public function addNew(Request $request) {
         $url = $request->input('url');
-        $bookmark=App\Bookmark::where('url', $url)->first();
+        $bookmark=\App\Bookmark::where('url', $url)->first();
         if ($bookmark===null) {
             $bookmark = new \App\Bookmark;
             $bookmark->url=$request->input('url');
@@ -62,12 +62,12 @@ class ApiController extends Controller
     public function addComment(Request $request) {
         $bookmarkId = $request->input('bm_id');
         $text = $request->input('text');
-        $bookmark=App\Bookmark::where('id', bm_id)->first();
+        $bookmark=\App\Bookmark::where('id', bm_id)->first();
         if ($bookmark===null) {
             return (new Response())->json(false)->setCallback($request->input('callback');
         }
 
-        $comment=new App\Comment();
+        $comment=new \App\Comment();
         $comment->body=htmlspecialchars($text);
         $comment->ip=Request::ip();
         $comment->save();
@@ -80,7 +80,7 @@ class ApiController extends Controller
         $text = $request->input('text');
         $userIp=Request::ip();
         $oneHourAgo = \Carbon::now()->subHour();
-        $comment=App\Comment::where([['id', $id],['ip',$userIp],['created_at','>',$oneHourAgo]])->first();
+        $comment=\App\Comment::where([['id', $id],['ip',$userIp],['created_at','>',$oneHourAgo]])->first();
 
         if ($comment===null) {
             $resp = false;
@@ -98,7 +98,7 @@ class ApiController extends Controller
         $id = $request->input('id');
         $userIp=Request::ip();
         $oneHourAgo = \Carbon::now()->subHour();
-        $comment=App\Comment::where([['id', $id],['ip',$userIp],['created_at','>',$oneHourAgo]])->first();
+        $comment=\App\Comment::where([['id', $id],['ip',$userIp],['created_at','>',$oneHourAgo]])->first();
 
         if ($comment===null) {
             $resp = false;
