@@ -62,14 +62,14 @@ class ApiController extends Controller
         $bookmarkId = $request->input('bm_id');
         $text = $request->input('text');
         $bookmark=\App\Bookmark::where('id', $bookmarkId)->first();
-        
+
         if ($bookmark===null) {
             return response()->json(false)->setCallback($request->input('callback'));
         }
 
         $comment=new \App\Comment();
         $comment->body=htmlspecialchars($text);
-        $comment->ip=Request::ip();
+        $comment->ip=$request->ip();
         $comment->save();
         $resp = $comment->id;
 
@@ -78,7 +78,7 @@ class ApiController extends Controller
     public function modifyComment(Request $request) {
         $id = $request->input('id');
         $text = $request->input('text');
-        $userIp=Request::ip();
+        $userIp=$request->ip();
         $oneHourAgo = \Carbon::now()->subHour();
         $comment=\App\Comment::where([['id', $id],['ip',$userIp],['created_at','>',$oneHourAgo]])->first();
 
@@ -96,7 +96,7 @@ class ApiController extends Controller
     }
     public function deleteComment(Request $request) {
         $id = $request->input('id');
-        $userIp=Request::ip();
+        $userIp=$request->ip();
         $oneHourAgo = \Carbon::now()->subHour();
         $comment=\App\Comment::where([['id', $id],['ip',$userIp],['created_at','>',$oneHourAgo]])->first();
 
