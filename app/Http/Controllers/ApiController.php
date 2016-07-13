@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class ApiController extends Controller
 {
@@ -98,7 +99,7 @@ class ApiController extends Controller
     public function deleteComment(Request $request) {
         $id = $request->input('id');
         $userIp=$request->ip();
-        $oneHourAgo = \Carbon::now()->subHour();
+        $oneHourAgo = Carbon::now()->subHour();
         $comment=\App\Comment::where([['id', $id],['ip',$userIp],['created_at','>',$oneHourAgo]])->first();
 
         if ($comment===null) {
