@@ -61,7 +61,8 @@ class ApiController extends Controller
     public function addComment(Request $request) {
         $bookmarkId = $request->input('bm_id');
         $text = $request->input('text');
-        $bookmark=\App\Bookmark::where('id', bm_id)->first();
+        $bookmark=\App\Bookmark::where('id', $bookmarkId)->first();
+        
         if ($bookmark===null) {
             return response()->json(false)->setCallback($request->input('callback'));
         }
