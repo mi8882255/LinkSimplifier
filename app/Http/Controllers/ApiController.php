@@ -69,6 +69,7 @@ class ApiController extends Controller
 
         $comment=new \App\Comment();
         $comment->body=htmlspecialchars($text);
+        $comment->bookmark_id=$bookmarkId;
         $comment->ip=$request->ip();
         $comment->save();
         $resp = $comment->id;
