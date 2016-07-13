@@ -74,15 +74,11 @@
                 <p>JQuery usage example:</p>
                 <code>
                     $.ajax({
-                    url: "/api/comments/add",
-                    type: "POST",
+                    url: "/api/bookmark/add",
                     jsonp: "callback",
-
                     dataType: "jsonp",
-
                     data: {
-                    bm_id: "1",
-                    text:'HelloAll12'
+                    url: "http://ya.ru"
                     },
 
                     success: function( response ) {
