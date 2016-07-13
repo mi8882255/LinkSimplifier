@@ -15,7 +15,7 @@ class Comments extends Migration
         //Comment: uid, created_at, ip, text
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreign('bookmark_id')->references('id')->on('bookmark');
+            $table->foreign('bookmark_id')->references('id')->on('bookmarks');
             $table->string('ip');
             $table->text('body');
             $table->timestamps();

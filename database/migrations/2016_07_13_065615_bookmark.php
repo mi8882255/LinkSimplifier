@@ -28,6 +28,7 @@ class Bookmark extends Migration
      */
     public function down()
     {
+        Schema::drop('comments');
         Schema::drop('bookmarks');
     }
 }
