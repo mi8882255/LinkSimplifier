@@ -80,7 +80,7 @@ class ApiController extends Controller
         $id = $request->input('id');
         $text = $request->input('text');
         $userIp=$request->ip();
-        $oneHourAgo = \Carbon::now()->subHour();
+        $oneHourAgo = Carbon::now()->subHour();
         $comment=\App\Comment::where([['id', $id],['ip',$userIp],['created_at','>',$oneHourAgo]])->first();
 
         if ($comment===null) {
