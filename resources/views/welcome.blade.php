@@ -84,11 +84,13 @@
                     });
                 </code><hr>
                 <p>Successful request/response example</p>
-                <code>http://ls.none.in.ua/api/bookmark/add?callback=jQuery190009163928138808375_1468413626064&url=http%3A%2F%2Fya.ru&_=1468413626065
+                <code>http://ls.none.in.ua/api/bookmark/add?callback=jQuery190009163928138808375_1468413626064&url=http%3A%2F%2Fya.ru&_=1468413626065</code><br>
+                <code>
                     jQuery190009163928138808375_1468413626064({state: true, resp: 2});</code><hr>
                 <p>Failed request/response example</p>
                 <code>
-                    http://ls.none.in.ua/api/bookmark/add?callback=jQuery190009163928138808375_1468413626064&url=gyya.ru&_=1468413626066
+                    http://ls.none.in.ua/api/bookmark/add?callback=jQuery190009163928138808375_1468413626064&url=gyya.ru&_=1468413626066</code><br>
+                <code>
                     jQuery190009163928138808375_1468413626064({state: false, err: {url: ["validation.u_r_l"]}});
                 </code>
             </div>
